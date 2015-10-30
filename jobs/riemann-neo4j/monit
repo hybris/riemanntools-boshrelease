@@ -1,0 +1,5 @@
+check process riemann-neo4j
+  with pidfile /var/vcap/sys/run/riemann-neo4j/riemann-neo4j_pid
+  start program "/var/vcap/jobs/riemann-neo4j/bin/ctl-riemann-neo4j start"
+  stop program "/var/vcap/jobs/riemann-neo4j/bin/ctl-riemann-neo4j stop"
+  group vcap

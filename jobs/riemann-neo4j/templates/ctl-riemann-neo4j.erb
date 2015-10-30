@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -e # exit immediately if a simple command exits with a non-zero status
+set -u # report the usage of uninitialized variables
+
+# Setup env vars and folders for the webapp_ctl script
+source /var/vcap/jobs/riemann-neo4j/helpers/ctl_setup.sh 'riemann-neo4j'
+
+PIDFILE=/var/vcap/sys/run/riemann-neo4j/riemann-neo4j_pid
+
+export LANG=en_US.UTF-8
+JAVA_OPTS="-server -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled -XX:+AggressiveOpts -XX:+UseFastAccessorMethods -XX:+UseCompressedOops -XX:+CMSClassUnloadingEnabled"
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE $JOB_NAME
+
+    exec chpst -u vcap:vcap java $JAVA_OPTS \
+      -jar ${PKG_DIR}/riemann-jmx-clj-0.1.0-standalone.jar  \
+          $JOB_DIR/config/riemann-neo4j.yaml \
+          >>  $LOG_DIR/$JOB_NAME.stdout.log \
+          2>> $LOG_DIR/$JOB_NAME.stderr.log & echo $! > $PIDFILE
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+  *)
+    echo "Usage: ctl-riemann-neo4j {start|stop}"
+
+    ;;
+
+esac
+exit 0

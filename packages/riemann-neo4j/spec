@@ -1,0 +1,7 @@
+---
+name: riemann-neo4j
+
+dependencies: []
+
+files:
+  - riemann-neo4j/riemann-jmx-clj-0.1.0-standalone.jar

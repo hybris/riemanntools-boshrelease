@@ -1,0 +1,34 @@
+---
+name: riemann-neo4j
+
+templates:
+  ctl-riemann-neo4j.erb: bin/ctl-riemann-neo4j
+  data/properties.sh.erb: data/properties.sh
+  helpers/ctl_setup.sh: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+  riemann-neo4j.yaml.erb: config/riemann-neo4j.yaml
+packages:
+  - java_for_riemanntools
+  - riemann-neo4j
+
+properties:
+  riemann.server:
+    description: "IP of the riemann server."
+  riemann.port:
+    description: "Port on which the riemann server is available."
+  riemann.interval:
+    description: "Riemann neo4j refresh interval."
+  riemann.prefix.env:
+      description: "Environment prefix to be used in report to riemann server"
+  riemann.prefix.team:
+          description: "Team prefix to be used in report to riemann server"
+  riemann.prefix.host:
+      description: "Host prefix to be used in report to riemann server"
+  neo4j.server.ip:
+    description: "IP of the neo4j server."
+  neo4j.jmx.port:
+    description: "Jmx port for neo4j."
+  neo4j.jmx.username:
+    description: "Optional jmx user name."
+  neo4j.jmx.password:
+    description: "Optional jmx password."
