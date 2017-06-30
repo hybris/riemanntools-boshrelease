@@ -37,7 +37,10 @@ jobs:
     - task: create-release-and-deploy
       config:
         platform: linux
-        image: docker:///teamidefix/riemanntools-boshrelease-pipeline
+        image_resource:
+          type: docker-image
+          source:
+            repository: teamidefix/riemanntools-boshrelease-pipeline
         inputs:
         - {name: riemanntools-boshrelease}
         run:
@@ -107,7 +110,10 @@ jobs:
   - task: create-final-release
     config:
       platform: linux
-      image: docker:///teamidefix/riemanntools-boshrelease-pipeline
+      image_resource:
+        type: docker-image
+        source:
+          repository: teamidefix/riemanntools-boshrelease-pipeline
       inputs:
       - {name: boshrelease, path: riemanntools-boshrelease}
       - {name: version}
