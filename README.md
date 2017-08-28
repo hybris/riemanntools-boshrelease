@@ -9,6 +9,12 @@ Run after checkout:
 git submodule update --init --recursive
 ```
 
+You might need to get the latest submodule 
+
+```
+git submodule sync --recursive
+git submodule update --recursive --remote
+```
 
 Background
 ----------
