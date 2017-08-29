@@ -18,7 +18,7 @@ case $1 in
 
     export PATH=/var/vcap/packages/ruby/bin:$PATH
 
-    bundle exec riemann-redis-dynomite-extension \
+    bundle exec riemann-redis-dynomite \
       --host <%= properties.riemann.server %> \
       --event-host <%= spec.index %>.<%= spec.job.name %>.<%= spec.deployment %>.<%= properties.riemann.suffix %> \
       --redis-section all \

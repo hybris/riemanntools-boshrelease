@@ -5,5 +5,4 @@ cp -a * ${BOSH_INSTALL_TARGET}
 cd ${BOSH_INSTALL_TARGET}/riemann-redis
 
 bundle_cmd=/var/vcap/packages/ruby/bin/bundle
-
 $bundle_cmd install --deployment --without development test

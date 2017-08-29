@@ -3,4 +3,4 @@
 	url = https://github.com/cloudfoundry/ruby-package.git
 [submodule "src/riemann-tools"]
 	path = src/riemann-tools
-	url = https://github.com/maryoush/riemann-tools.git
+	url = https://github.com/hybris/riemann-tools.git

@@ -4,9 +4,10 @@ name: riemann-redis-dynomite-extension
 packages:
   - ruby
   - riemann-tools
+  - riemann-redis
 
 templates:
-  ctl-riemann-redis-dynomite-extension.erb: bin/riemann-redis-dynomite-extension
+  ctl-riemann-redis-dynomite-extension.erb: bin/ctl-riemann-redis-dynomite-extension
 
 properties:
   riemann.server:
