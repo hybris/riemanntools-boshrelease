@@ -1,0 +1,33 @@
+---
+name: riemann-jmx
+
+templates:
+  ctl-riemann-jmx.erb: bin/ctl-riemann-jmx
+  data/properties.sh.erb: data/properties.sh
+  helpers/ctl_setup.sh: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+  riemann-jmx.yaml.erb: config/riemann-jmx.yaml
+
+packages:
+  - java_for_riemanntools
+  - riemann-jmx
+
+properties:
+  riemann.server:
+    description: "IP of the riemann server."
+  riemann.port:
+    description: "Port on which the riemann server is available."
+  riemann.suffix:
+    description: "Riemann host suffix"
+  riemann.interval:
+    description: "Riemann neo4j refresh interval."
+  riemann.prefix.host:
+    description: "Host prefix to be used in report to riemann server"
+  riemann.jmx.port:
+    description: "Jmx port."
+  riemann.jmx.username:
+    description: "Optional jmx user name."
+  riemann.jmx.password:
+    description: "Optional jmx password."
+  riemann.jmx.config:
+    description: "JMX configuration"

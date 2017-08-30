@@ -1,6 +1,23 @@
 BOSH release to run riemanntools
 =======================
 
+Important
+---------
+
+The Blob dir intentionally contains _riemann-jmx/riemann-jmx-clj-0.1.0-standalone.jar_
+
+Run after checkout:  
+```
+git submodule update --init --recursive
+```
+
+You might need to get the latest submodule 
+
+```
+git submodule sync --recursive
+git submodule update --recursive --remote
+```
+
 Background
 ----------
 

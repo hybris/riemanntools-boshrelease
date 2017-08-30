@@ -1,0 +1,7 @@
+
+check process riemann-redis-dynomite-extension
+  with pidfile /var/vcap/sys/run/riemann-redis-dynomite-extension/riemann_redis_dynomite_extension_pid
+  start program "/var/vcap/jobs/riemann-redis-dynomite-extension/bin/ctl-riemann-redis-dynomite-extension start"
+  stop program "/var/vcap/jobs/riemann-redis-dynomite-extension/bin/ctl-riemann-redis-dynomite-extension stop"
+  group vcap
+  depends on redis

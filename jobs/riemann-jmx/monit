@@ -1,0 +1,5 @@
+check process riemann-jmx
+  with pidfile /var/vcap/sys/run/riemann-jmx/riemann-jmx_pid
+  start program "/var/vcap/jobs/riemann-jmx/bin/ctl-riemann-jmx start"
+  stop program "/var/vcap/jobs/riemann-jmx/bin/ctl-riemann-jmx stop"
+  group vcap

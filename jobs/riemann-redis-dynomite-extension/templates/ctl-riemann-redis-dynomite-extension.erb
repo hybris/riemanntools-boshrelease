@@ -1,0 +1,41 @@
+#!/bin/bash
+
+set -e # exit immediately if a simple command exits with a non-zero status
+set -u # report the usage of uninitialized variables
+
+RUN_DIR=/var/vcap/sys/run/riemann-redis-dynomite-extension
+LOG_DIR=/var/vcap/sys/log/riemann-redis-dynomite-extension
+JOB_DIR=/var/vcap/jobs/riemann-redis-dynomite-extension
+PIDFILE=${RUN_DIR}/riemann_redis_dynomite_extension_pid
+
+case $1 in
+
+  start)
+    mkdir -p $RUN_DIR $LOG_DIR
+    chown -R vcap:vcap $RUN_DIR $LOG_DIR
+
+    cd /var/vcap/packages/riemann-redis/riemann-redis
+
+    export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+    bundle exec riemann-redis-dynomite \
+      --host <%= properties.riemann.server %> \
+      --event-host <%= spec.index %>.<%= spec.job.name %>.<%= spec.deployment %>.<%= properties.riemann.suffix %> \
+      --redis-section all \
+      --tag redis \
+      1>> $LOG_DIR/riemann-redis-dynomite-extension.stdout.log \
+      2>> $LOG_DIR/riemann-redis-dynomite-extension.stderr.log &
+
+    echo $! > $PIDFILE
+    ;;
+
+  stop)
+
+    kill -9 `cat $PIDFILE`
+    rm -f $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: ctl-riemann-redis-dynomite-extension {start|stop}" ;;
+
+esac

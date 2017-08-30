@@ -1,0 +1,7 @@
+---
+name: riemann-jmx
+
+dependencies: []
+
+files:
+  - riemann-jmx/riemann-jmx-clj-0.1.0-standalone.jar
