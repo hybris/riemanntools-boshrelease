@@ -1,0 +1,6 @@
+
+check process riemann-net
+  with pidfile /var/vcap/sys/run/riemann-net/net_pid
+  start program "/var/vcap/jobs/riemann-net/bin/ctl-net start"
+  stop program "/var/vcap/jobs/riemann-net/bin/ctl-net stop"
+  group vcap
